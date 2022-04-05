@@ -18,16 +18,8 @@ class Game:
 
     def score(self):
         result = ""
-        if (self.p1points == self.p2points and self.p1points < MINIMAL_POINTS_TO_SCORE_SET):
-            if (self.p1points == 0):
-                result = "Love"
-            if (self.p1points == 1):
-                result = "Fifteen"
-            if (self.p1points == 2):
-                result = "Thirty"
-            result += "-All"
-        if (self.p1points == self.p2points and self.p1points > 2):
-            result = "Deuce"
+        if self.is_game_tied():
+            result = self.get_tied_score(self.p1points)
 
         P1res = ""
         P2res = ""
@@ -84,6 +76,25 @@ class Game:
         if (self.p2points >= MINIMAL_SETS_TO_WIN and self.p1points >= 0 and (self.p2points - self.p1points) >= MINIMAL_POINTS_DIFERENCE_TO_SCORE_SET):
             result = "Win for " + self.player2Name
         return result
+
+    def is_game_tied(self):
+        return self.p1points == self.p2points and self.p1points < MINIMAL_POINTS_TO_SCORE_SET
+
+    def get_tied_score(self, points):
+        result = None
+        if points == MINIMAL_POINTS_TO_SCORE_SET:
+            result = "Deuce"
+            return result
+        if (points == 0):
+            result = "Love"
+        if (points == 1):
+            result = "Fifteen"
+        if (points == 2):
+            result = "Thirty"
+        result += "-All"
+
+        return result
+
 
     def SetP1Score(self, number):
         for i in range(number):

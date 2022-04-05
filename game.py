@@ -1,3 +1,8 @@
+MINIMAL_POINTS_TO_SCORE_SET = 3
+MINIMAL_SETS_TO_WIN = 4
+MINIMAL_POINTS_DIFERENCE_TO_SCORE_SET = 2
+
+
 class Game:
     def __init__(self, player1Name, player2Name):
         self.player1Name = player1Name
@@ -13,7 +18,7 @@ class Game:
 
     def score(self):
         result = ""
-        if (self.p1points == self.p2points and self.p1points < 3):
+        if (self.p1points == self.p2points and self.p1points < MINIMAL_POINTS_TO_SCORE_SET):
             if (self.p1points == 0):
                 result = "Love"
             if (self.p1points == 1):
@@ -47,7 +52,7 @@ class Game:
             P1res = "Love"
             result = P1res + "-" + P2res
 
-        if (self.p1points > self.p2points and self.p1points < 4):
+        if (self.p1points > self.p2points and self.p1points < MINIMAL_SETS_TO_WIN):
             if (self.p1points == 2):
                 P1res = "Thirty"
             if (self.p1points == 3):
@@ -57,7 +62,7 @@ class Game:
             if (self.p2points == 2):
                 P2res = "Thirty"
             result = P1res + "-" + P2res
-        if (self.p2points > self.p1points and self.p2points < 4):
+        if (self.p2points > self.p1points and self.p2points < MINIMAL_SETS_TO_WIN):
             if (self.p2points == 2):
                 P2res = "Thirty"
             if (self.p2points == 3):
@@ -68,15 +73,15 @@ class Game:
                 P1res = "Thirty"
             result = P1res + "-" + P2res
 
-        if (self.p1points > self.p2points and self.p2points >= 3):
+        if (self.p1points > self.p2points and self.p2points >= MINIMAL_POINTS_TO_SCORE_SET):
             result = "Advantage " + self.player1Name
 
-        if (self.p2points > self.p1points and self.p1points >= 3):
+        if (self.p2points > self.p1points and self.p1points >= MINIMAL_POINTS_TO_SCORE_SET):
             result = "Advantage " + self.player2Name
 
-        if (self.p1points >= 4 and self.p2points >= 0 and (self.p1points - self.p2points) >= 2):
+        if (self.p1points >= MINIMAL_SETS_TO_WIN and self.p2points >= 0 and (self.p1points - self.p2points) >= MINIMAL_POINTS_DIFERENCE_TO_SCORE_SET):
             result = "Win for " + self.player1Name
-        if (self.p2points >= 4 and self.p1points >= 0 and (self.p2points - self.p1points) >= 2):
+        if (self.p2points >= MINIMAL_SETS_TO_WIN and self.p1points >= 0 and (self.p2points - self.p1points) >= MINIMAL_POINTS_DIFERENCE_TO_SCORE_SET):
             result = "Win for " + self.player2Name
         return result
 

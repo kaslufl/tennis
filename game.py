@@ -6,7 +6,7 @@ MINIMAL_POINTS_DIFFERENCE_TO_SCORE_SET = 2
 SCORES = {
     0: 'Love',
     1: 'Fifteen',
-    2: 'Trirty',
+    2: 'Thirty',
     3: 'Forty'
 }
 

@@ -32,10 +32,10 @@ class Game:
         elif self.is_p2_in_advantage():
             result = "Advantage " + self.player2.get_name()
 
-        elif self.is_player_in_set_point(self.player1.get_points()) and self.is_game_winnable(self.get_p1_p2_difference()):
+        elif self.is_p1_winner():
             result = "Win for " + self.player1.get_name()
 
-        elif self.is_player_in_set_point(self.player2.get_points()) and self.is_game_winnable(self.get_p2_p1_difference()):
+        elif self.is_p2_winner():
             result = "Win for " + self.player2.get_name()
         else:
             player_1_score = self.get_score(self.player1.get_points())
@@ -43,6 +43,14 @@ class Game:
             result = player_1_score + "-" + player_2_score
 
         return result
+
+    def is_p2_winner(self):
+        return self.is_player_in_set_point(self.player2.get_points()) and self.is_game_winnable(
+            self.get_p2_p1_difference())
+
+    def is_p1_winner(self):
+        return self.is_player_in_set_point(self.player1.get_points()) and self.is_game_winnable(
+            self.get_p1_p2_difference())
 
     def is_game_winnable(self, difference):
         return difference >= MINIMAL_POINTS_DIFFERENCE_TO_SCORE_SET
